@@ -1,0 +1,24 @@
+{
+    "name": "sgrodzicki/PageSpeed",
+    "type": "library",
+    "description": "A PHP library to interact with the PageSpeed Insights API",
+    "keywords": ["PageSpeed", "Insights", "API", "Google"],
+    "homepage": "https://github.com/sgrodzicki/PageSpeed",
+    "require": {
+        "php": ">=5.3.3",
+        "guzzle/guzzle": "v2.7.2"
+    },
+    "authors": [
+        {
+            "name": "Sebastian Grodzicki",
+            "email": "sebastian@grodzicki.pl",
+            "homepage": "http://sebastian.grodzicki.pl"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "PageSpeed": "src/",
+            "PageSpeed\\Tests": "tests/"
+        }
+    }
+}
