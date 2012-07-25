@@ -38,7 +38,7 @@ $pageSpeed->getResults('http://www.example.com');
 Tests
 =====
 
-[![Build Status](https://secure.travis-ci.org/sgrodzicki/PageSpeed.png?branch=master)](http://travis-ci.org/sgrodzicki/PageSpeed)
+[![Build Status](https://secure.travis-ci.org/sgrodzicki/pagespeed.png?branch=master)](http://travis-ci.org/sgrodzicki/pagespeed)
 
 The client is tested with phpunit; you can run the tests, from the repository's root, by doing:
 
