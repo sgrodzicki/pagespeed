@@ -1,5 +1,5 @@
 {
-    "name": "sgrodzicki/PageSpeed",
+    "name": "sgrodzicki/pagespeed",
     "type": "library",
     "description": "A PHP library to interact with the PageSpeed Insights API",
     "keywords": ["PageSpeed", "Insights", "API", "Google"],
