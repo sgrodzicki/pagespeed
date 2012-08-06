@@ -36,7 +36,7 @@ class ServiceTest extends \PageSpeed\Tests\PageSpeedTestCase
 	 */
 	public function testInvalidUrl()
 	{
-		$pageSpeed = new \PageSpeed\Insights\Service('AIzaSyD8jdNujwZY81cmmX_DOEDrezLG20WrtNc');
+		$pageSpeed = new \PageSpeed\Insights\Service($this->key);
 		$pageSpeed->getResults('localhost');
 	}
 
@@ -45,8 +45,8 @@ class ServiceTest extends \PageSpeed\Tests\PageSpeedTestCase
 	 */
 	public function testResults()
 	{
-		$pageSpeed = new \PageSpeed\Insights\Service('AIzaSyD8jdNujwZY81cmmX_DOEDrezLG20WrtNc');
-		$url       = 'https://github.com/sgrodzicki/PageSpeed';
+		$pageSpeed = new \PageSpeed\Insights\Service($this->key);
+		$url       = 'https://github.com/sgrodzicki/pagespeed';
 		$results   = $pageSpeed->getResults($url);
 
 		$keys = array('kind', 'id', 'responseCode', 'title', 'score', 'pageStats', 'formattedResults', 'version');
@@ -56,7 +56,7 @@ class ServiceTest extends \PageSpeed\Tests\PageSpeedTestCase
 
 		$this->assertEquals($url, $results['id']);
 		$this->assertEquals(200, $results['responseCode']);
-		$this->assertStringStartsWith('sgrodzicki/PageSpeed', $results['title']);
+		$this->assertStringStartsWith('sgrodzicki/pagespeed', $results['title']);
 		$this->assertStringEndsWith('GitHub', $results['title']);
 		$this->assertTrue(is_array($results['pageStats']));
 		$this->assertTrue(is_array($results['formattedResults']));

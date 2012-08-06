@@ -3,7 +3,7 @@
     "type": "library",
     "description": "A PHP library to interact with the PageSpeed Insights API",
     "keywords": ["PageSpeed", "Insights", "API", "Google"],
-    "homepage": "https://github.com/sgrodzicki/PageSpeed",
+    "homepage": "https://github.com/sgrodzicki/pagespeed",
     "require": {
         "php": ">=5.3.3",
         "guzzle/guzzle": "v2.7.2"

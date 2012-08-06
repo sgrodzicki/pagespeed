@@ -1,4 +1,5 @@
 .idea
 vendor
 composer.lock
+composer.phar
 credentials.php
