@@ -6,8 +6,9 @@
     "homepage": "https://github.com/sgrodzicki/pagespeed",
     "require": {
         "php": ">=5.3.3",
-        "guzzle/guzzle": "v2.7.2"
+        "guzzle/guzzle": "v2.8.5"
     },
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Sebastian Grodzicki",
