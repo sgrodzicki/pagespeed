@@ -4,11 +4,11 @@
     "description": "A PHP library to interact with the PageSpeed Insights API",
     "keywords": ["PageSpeed", "Insights", "API", "Google"],
     "homepage": "https://github.com/sgrodzicki/pagespeed",
+    "license": "MIT",
     "require": {
         "php": ">=5.3.3",
-        "guzzle/guzzle": "3.0.*"
+        "guzzle/guzzle": ">=3.0, <3.4"
     },
-    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Sebastian Grodzicki",
