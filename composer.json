@@ -7,7 +7,7 @@
     "license": "MIT",
     "require": {
         "php": ">=5.3.3",
-        "guzzle/guzzle": ">=3.0, <3.4"
+        "guzzle/guzzle": ">=3.0, <4.0"
     },
     "authors": [
         {
