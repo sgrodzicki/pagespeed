@@ -55,10 +55,12 @@ class Service
 			->set('locale', $locale)
 			->set('strategy', $strategy);
 
-		if (isset($extraParams))
+		if (isset($extraParams)) {
+			$query = $request->getQuery();
 			foreach($extraParams as $key=>$value)
-		{
-			$request = $request->set($key, $value);
+			{
+				$query[$key] = $value;
+			}
 		}
 
 		try {
