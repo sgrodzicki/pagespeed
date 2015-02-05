@@ -18,21 +18,13 @@ class Service
 	/**
 	 * @var string
 	 */
-	private $gateway = 'https://www.googleapis.com/pagespeedonline/v1';
+	private $gateway = 'https://www.googleapis.com/pagespeedonline/v2';
 
 	/**
-	 * @param string $key
-	 * @throws Exception\InvalidArgumentException
 	 * @return Service
 	 */
-	public function __construct($key)
+	public function __construct()
 	{
-		if (39 <> strlen($key)) {
-			throw new InvalidArgumentException('Key should be exactly 39 characters long');
-		}
-
-		$this->key = $key;
-
 		return $this;
 	}
 
@@ -57,7 +49,6 @@ class Service
 		/** @var $request \Guzzle\Http\Message\Request */
 		$request = $client->get('runPagespeed');
 		$request->getQuery()
-			->set('key', $this->key)
 			->set('prettyprint', false) // reduce the response payload size
 			->set('url', $url)
 			->set('locale', $locale)
