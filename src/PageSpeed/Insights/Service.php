@@ -34,11 +34,12 @@ class Service
 	 * @param string $url
 	 * @param string $locale
 	 * @param string $strategy
+	 * @param optional array $extraParams
 	 * @return array
 	 * @throws Exception\InvalidArgumentException
 	 * @throws Exception\RuntimeException
 	 */
-	public function getResults($url, $locale = 'en_US', $strategy = 'desktop')
+	public function getResults($url, $locale = 'en_US', $strategy = 'desktop', array $extraParams = null)
 	{
 		if (0 === preg_match('#http(s)?://.*#i', $url)) {
 			throw new InvalidArgumentException('Invalid URL');
@@ -53,6 +54,12 @@ class Service
 			->set('url', $url)
 			->set('locale', $locale)
 			->set('strategy', $strategy);
+
+		if (isset($extraParams))
+			foreach($extraParams as $key=>$value)
+		{
+			$request = $request->set($key, $value);
+		}
 
 		try {
 			$response = $request->send();
