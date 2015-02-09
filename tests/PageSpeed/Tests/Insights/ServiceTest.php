@@ -4,29 +4,18 @@ namespace PageSpeed\Tests\Insights;
 
 class ServiceTest extends \PageSpeed\Tests\PageSpeedTestCase
 {
-	private $key;
-
-	protected function setUp()
-	{
-		global $key;
-
-		$this->key = $key;
-
-		parent::setUp();
-	}
-
 	/**
 	 * @expectedException InvalidArgumentException
 	 */
 	public function testInvalidUrl()
 	{
-		$pageSpeed = new \PageSpeed\Insights\Service($this->key);
+		$pageSpeed = new \PageSpeed\Insights\Service();
 		$pageSpeed->getResults('localhost');
 	}
 
 	public function testResults()
 	{
-		$pageSpeed = new \PageSpeed\Insights\Service($this->key);
+		$pageSpeed = new \PageSpeed\Insights\Service();
 		$url       = 'https://github.com/sgrodzicki/pagespeed';
 		$results   = $pageSpeed->getResults($url);
 

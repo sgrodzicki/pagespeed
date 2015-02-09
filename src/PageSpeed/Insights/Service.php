@@ -8,14 +8,6 @@ use PageSpeed\Insights\Exception\RuntimeException;
 class Service
 {
 	/**
-	 * Google API key
-	 *
-	 * @var string
-	 * @link https://code.google.com/apis/console#access
-	 */
-	private $key;
-
-	/**
 	 * @var string
 	 */
 	private $gateway = 'https://www.googleapis.com/pagespeedonline/v2';
