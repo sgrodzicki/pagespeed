@@ -11,7 +11,7 @@ The best way to install the library is by using [Composer](http://getcomposer.or
 ``` javascript
 {
     "require": {
-        "sgrodzicki/pagespeed": "1.0.*"
+        "sgrodzicki/pagespeed": "~2.0"
     }
 }
 ```
