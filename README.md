@@ -1,7 +1,7 @@
 PageSpeed Insights API
 ======================
 
-A PHP module to interact with the [PageSpeed Insights API](https://developers.google.com/speed/docs/insights/v1/getting_started).
+A PHP module to interact with the [PageSpeed Insights API](https://developers.google.com/speed/docs/insights/v2/getting-started).
 
 Installation
 ============
@@ -31,7 +31,7 @@ Basic usage
 ```php
 <?php
 
-$pageSpeed = new \PageSpeed\Insights\Service('YOUR_API_KEY');
+$pageSpeed = new \PageSpeed\Insights\Service();
 $pageSpeed->getResults('http://www.example.com');
 ```
 
@@ -46,19 +46,5 @@ The client is tested with phpunit; you can run the tests, from the repository's 
 phpunit
 ```
 
-Some tests require internet connection (to test against a real API response), so they are disabled by default; to run them add a `credentials.php` file in the root of your project:
-
-```php
-<?php
-
-require_once __DIR__ . '/vendor/autoload.php';
-
-$key = 'YOUR_API_KEY';
-
-```
-
-and run the tests, from the repository's root, by doing:
-
-``` bash
-phpunit --bootstrap credentials.php
-```
+Some tests may fail, due to requiring an internet connection (to test against a real API response). Make sure that
+you are connected to the internet before running the full test suite.

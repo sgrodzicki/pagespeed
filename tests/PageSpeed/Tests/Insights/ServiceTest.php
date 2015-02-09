@@ -4,52 +4,22 @@ namespace PageSpeed\Tests\Insights;
 
 class ServiceTest extends \PageSpeed\Tests\PageSpeedTestCase
 {
-	private $key;
-
-	protected function setUp()
-	{
-		global $key;
-
-		$this->key = $key;
-
-		parent::setUp();
-	}
-
-	public function testApiKey()
-	{
-		if (is_null($this->key)) {
-			$this->markTestSkipped('API key missing');
-		}
-	}
-
 	/**
-	 * @expectedException InvalidArgumentException
-	 */
-	public function testInvalidApiKey()
-	{
-		new \PageSpeed\Insights\Service('invalid_api_key');
-	}
-
-	/**
-	 * @depends           testApiKey
 	 * @expectedException InvalidArgumentException
 	 */
 	public function testInvalidUrl()
 	{
-		$pageSpeed = new \PageSpeed\Insights\Service($this->key);
+		$pageSpeed = new \PageSpeed\Insights\Service();
 		$pageSpeed->getResults('localhost');
 	}
 
-	/**
-	 * @depends testApiKey
-	 */
 	public function testResults()
 	{
-		$pageSpeed = new \PageSpeed\Insights\Service($this->key);
+		$pageSpeed = new \PageSpeed\Insights\Service();
 		$url       = 'https://github.com/sgrodzicki/pagespeed';
 		$results   = $pageSpeed->getResults($url);
 
-		$keys = array('kind', 'id', 'responseCode', 'title', 'score', 'pageStats', 'formattedResults', 'version');
+		$keys = array('kind', 'id', 'responseCode', 'title', 'ruleGroups', 'pageStats', 'formattedResults', 'version');
 		foreach ($keys as $key) {
 			$this->assertArrayHasKey($key, $results);
 		}
