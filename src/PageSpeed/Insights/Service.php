@@ -13,14 +13,6 @@ class Service
 	private $gateway = 'https://www.googleapis.com/pagespeedonline/v2';
 
 	/**
-	 * @return Service
-	 */
-	public function __construct()
-	{
-		return $this;
-	}
-
-	/**
 	 * Returns PageSpeed score, page statistics, and PageSpeed formatted results for specified URL
 	 *
 	 * @param string $url
