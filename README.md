@@ -46,3 +46,5 @@ The client is tested with phpunit; you can run the tests, from the repository's 
 phpunit
 ```
 
+Some tests may fail, due to requiring an internet connection (to test against a real API response). Make sure that
+you are connected to the internet before running the full test suite.
