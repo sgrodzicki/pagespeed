@@ -2,6 +2,8 @@
 
 namespace PageSpeed\Insights;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use PageSpeed\Insights\Exception\InvalidArgumentException;
 use PageSpeed\Insights\Exception\RuntimeException;
 
@@ -10,7 +12,7 @@ class Service
 	/**
 	 * @var string
 	 */
-	private $gateway = 'https://www.googleapis.com/pagespeedonline/v2';
+	private $gateway = 'https://www.googleapis.com/pagespeedonline/v2/';
 
 	/**
 	 * Returns PageSpeed score, page statistics, and PageSpeed formatted results for specified URL
@@ -29,35 +31,34 @@ class Service
 			throw new InvalidArgumentException('Invalid URL');
 		}
 
-		$client = new \Guzzle\Service\Client($this->gateway);
+		$client = new Client(['base_uri' => $this->gateway]);
+        $query = [
+            'url' => $url,
+            'locale' => $locale,
+            'strategy' => $strategy,
+        ];
 
-		/** @var $request \Guzzle\Http\Message\Request */
-		$request = $client->get('runPagespeed');
-		$request->getQuery()
-			->set('prettyprint', false) // reduce the response payload size
-			->set('url', $url)
-			->set('locale', $locale)
-			->set('strategy', $strategy);
+        if (!empty($extraParams)) {
+            foreach($extraParams as $key => $value) {
+                $query[$key] = $value;
+            }
+        }
 
-		if (isset($extraParams)) {
-			$query = $request->getQuery();
-			foreach($extraParams as $key=>$value)
-			{
-				$query[$key] = $value;
-			}
-		}
+        try {
 
-		try {
-			$response = $request->send();
-			$response = $response->getBody();
-			$response = json_decode($response, true);
+            /** @var \GuzzleHttp\Psr7\Response $response */
+		    $response = $client->request('GET','runPagespeed', ['query' => $query]);
+            $response = $response->getBody()->getContents();
+            /** @var array $response */
+            $response = json_decode($response, true);
 
-			return $response;
-		} catch (\Guzzle\Http\Exception\ClientErrorResponseException $e) {
+            return $response;
+
+		} catch (RequestException $e) {
 			$response = $e->getResponse();
 			$response = $response->getBody();
+			/** @var \stdClass $response */
 			$response = json_decode($response);
-
 			throw new RuntimeException($response->error->message, $response->error->code);
 		}
 	}
