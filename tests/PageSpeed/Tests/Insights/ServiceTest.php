@@ -2,20 +2,23 @@
 
 namespace PageSpeed\Tests\Insights;
 
-class ServiceTest extends \PageSpeed\Tests\PageSpeedTestCase
+use PageSpeed\Insights\Service;
+use PageSpeed\Tests\PageSpeedTestCase;
+
+class ServiceTest extends PageSpeedTestCase
 {
 	/**
-	 * @expectedException InvalidArgumentException
+	 * @expectedException \InvalidArgumentException
 	 */
 	public function testInvalidUrl()
 	{
-		$pageSpeed = new \PageSpeed\Insights\Service();
+		$pageSpeed = new Service();
 		$pageSpeed->getResults('localhost');
 	}
 
 	public function testResults()
 	{
-		$pageSpeed = new \PageSpeed\Insights\Service();
+		$pageSpeed = new Service();
 		$url       = 'https://github.com/sgrodzicki/pagespeed';
 		$results   = $pageSpeed->getResults($url);
 
@@ -26,8 +29,7 @@ class ServiceTest extends \PageSpeed\Tests\PageSpeedTestCase
 
 		$this->assertEquals($url, $results['id']);
 		$this->assertEquals(200, $results['responseCode']);
-		$this->assertStringStartsWith('sgrodzicki/pagespeed', $results['title']);
-		$this->assertStringEndsWith('GitHub', $results['title']);
+		$this->assertEquals('GitHub - sgrodzicki/pagespeed: A PHP library to interact with the PageSpeed Insights API', $results['title']);
 		$this->assertTrue(is_array($results['pageStats']));
 		$this->assertTrue(is_array($results['formattedResults']));
 		$this->assertTrue(is_array($results['version']));
