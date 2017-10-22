@@ -2,7 +2,9 @@
 
 namespace PageSpeed\Tests;
 
-abstract class PageSpeedTestCase extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+abstract class PageSpeedTestCase extends TestCase
 {
 
 }
